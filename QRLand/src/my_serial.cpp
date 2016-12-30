@@ -8,7 +8,14 @@
 #include "AttitudePosition.h"
 using namespace std;
 //
+
+#ifdef _WIN32
 serial::Serial serial_port("COM1", 230400, serial::Timeout::simpleTimeout(1000));
+#else
+serial::Serial serial_port("/dev/USBtty0", 230400, serial::Timeout::simpleTimeout(1000));
+#endif // _WIN32
+
+
 
 unsigned char data_to_send[50];
 int Length = 0;
